@@ -1,0 +1,66 @@
+<h1>🏪 STORE BARANG</h1>
+
+<div class="container">
+  <p class="subtitle">Kelola data barang pada store Anda</p>
+
+  <!-- 📝 Input Area -->
+  <div class="input-area">
+    <input
+      type="text"
+      placeholder="Kode Barang"
+      [(ngModel)]="newKodeBarang"
+    />
+
+    <input
+      type="text"
+      placeholder="Nama Barang"
+      [(ngModel)]="newNamaBarang"
+    />
+
+    <input
+      type="number"
+      placeholder="Jumlah"
+      [(ngModel)]="newJumlah"
+    />
+
+    <input
+      type="number"
+      placeholder="Harga"
+      [(ngModel)]="newHarga"
+    />
+
+    <button id="addBtn" (click)="addStore()">💾 Simpan Barang</button>
+  </div>
+
+  <!-- 📋 Store List -->
+  <div class="catalog-table" *ngIf="stores.length > 0">
+    <div class="table-header">
+      <span>Kode</span>
+      <span>Nama Barang</span>
+      <span>Jumlah</span>
+      <span>Harga</span>
+      <span>Aksi</span>
+    </div>
+
+    <ul class="catalog-list">
+      <li class="catalog-item" *ngFor="let store of stores">
+        <div class="kode">{{ store.kode_barang }}</div>
+        <div class="nama">{{ store.nama_barang }}</div>
+        <div class="jumlah">{{ store.jumlah }}</div>
+        <div class="harga">
+          Rp {{ store.harga | number:'1.0-0' }}
+        </div>
+
+        <div class="actions">
+          <button class="edit" (click)="editStore(store)">✏️ Edit</button>
+          <button class="delete" (click)="deleteStore(store)">🗑️ Hapus</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 🚫 Empty State -->
+  <div *ngIf="stores.length === 0" class="no-data">
+    Belum ada data barang pada store.
+  </div>
+</div>
