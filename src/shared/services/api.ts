@@ -5,24 +5,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Api {
-  apiNode = 'http://localhost:3000'; // sesuaikan kalau beda
+  apiNode = (window as any).__env?.API_URL || 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) {}
 
   getStore(vData: any) {
-  return this.httpClient.post(this.apiNode + '/catalog/get', vData);
-}
+    return this.httpClient.post(this.apiNode + '/store/get', vData);
+  }
 
-addStore(vData: any) {
-  return this.httpClient.post(this.apiNode + '/catalog/add', vData);
-}
+  addStore(vData: any) {
+    return this.httpClient.post(this.apiNode + '/store/add', vData);
+  }
 
-editStore(vData: any) {
-  return this.httpClient.post(this.apiNode + '/catalog/edit', vData);
-}
+  editStore(vData: any) {
+    return this.httpClient.post(this.apiNode + '/store/edit', vData);
+  }
 
-deleteStore(vData: any) {
-  return this.httpClient.post(this.apiNode + '/catalog/delete', vData);
-}
-
+  deleteStore(vData: any) {
+    return this.httpClient.post(this.apiNode + '/store/delete', vData);
+  }
 }
